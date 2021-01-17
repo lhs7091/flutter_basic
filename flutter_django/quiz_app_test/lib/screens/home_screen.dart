@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_test/export.dart';
+import 'package:quiz_app_test/models/api_adapter.dart';
 import 'package:quiz_app_test/screens/quiz_screen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -8,23 +11,42 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Quiz> quizs = [
-    Quiz.fromMap({
-      'title': 'test1',
-      'candidates': ['a', 'b', 'c', 'd'],
-      'answer': 1,
-    }),
-    Quiz.fromMap({
-      'title': 'test2',
-      'candidates': ['a', 'b', 'c', 'd'],
-      'answer': 2,
-    }),
-    Quiz.fromMap({
-      'title': 'test3',
-      'candidates': ['a', 'b', 'c', 'd'],
-      'answer': 3,
-    })
-  ];
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  List<Quiz> quizs = [];
+  bool isLoading = false;
+
+  _fetchQuizs() async {
+    setState(() {
+      isLoading = true;
+    });
+    final response =
+        await http.get('https://agile-sea-28515.herokuapp.com/quiz/3');
+    if (response.statusCode == 200) {
+      setState(() {
+        quizs = parseQuizes(utf8.decode(response.bodyBytes));
+        isLoading = false;
+      });
+    } else {
+      throw Exception('http connection error');
+    }
+  }
+  // List<Quiz> quizs = [
+  //   Quiz.fromMap({
+  //     'title': 'test1',
+  //     'candidates': ['a', 'b', 'c', 'd'],
+  //     'answer': 1,
+  //   }),
+  //   Quiz.fromMap({
+  //     'title': 'test2',
+  //     'candidates': ['a', 'b', 'c', 'd'],
+  //     'answer': 2,
+  //   }),
+  //   Quiz.fromMap({
+  //     'title': 'test3',
+  //     'candidates': ['a', 'b', 'c', 'd'],
+  //     'answer': 3,
+  //   })
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onWillPop: () async => false,
       child: SafeArea(
         child: Scaffold(
+          key: _scaffoldKey,
           appBar: AppBar(
             title: Text('My Quiz App'),
             backgroundColor: Colors.deepPurple,
@@ -80,14 +103,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => QuizScreen(
-                            quizs: quizs,
+                      _scaffoldKey.currentState.showSnackBar(
+                        SnackBar(
+                          content: Row(
+                            children: [
+                              CircularProgressIndicator(),
+                              SizedBox(width: width * 0.036),
+                              Text('Loading...')
+                            ],
                           ),
                         ),
                       );
+                      _fetchQuizs().whenComplete(() {
+                        return Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => QuizScreen(
+                              quizs: quizs,
+                            ),
+                          ),
+                        );
+                      });
                     },
                     child: Text(
                       '지금 퀴즈 풀기',
