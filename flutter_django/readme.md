@@ -53,4 +53,9 @@
 
  - heroku CLI 환경 설치
    - brew install heroku/brew/heroku
+ - heroku 로그인
+   - heroku login
+ - pjt 생성
+   - heroku create drf-quiz-test(pjt name)
+    
 
