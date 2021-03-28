@@ -23,3 +23,66 @@ samples, guidance on mobile development, and a full API reference.
  - 페이지 전환 효과 적용
  - arguments 전달
  - 동적 링크 사용
+
+## statement management
+
+GetX Controller class
+it's similar with Provider class.
+```
+import 'package:get/get.dart';
+
+class CountControllerGetX extends GetxController {
+  int count = 0;
+
+  getCount() => count;
+
+  void increase() {
+    count++;
+    update();
+  }
+}
+```
+
+if provider,
+```
+class CountControllerProvider extends ChangeNotifier {
+  int count = 0;
+
+  getCount() => count;
+
+  void increase() {
+    count++;
+    notifyListeners();
+  }
+}
+```
+
+
+GetX do not need context. 
+So don't need to make stateful or 'context' argument.
+```
+// getx(no context)
+GetBuilder<CountControllerGetX>(
+    builder: (controller) {
+        return Text(
+            '${controller.getCount()}',
+            style: TextStyle(
+            fontSize: 30,
+            ),
+        );
+    },
+),
+
+
+// provider(using context)
+ Consumer<CountControllerProvider>(
+    builder: (context, value, child) {
+        return Text(
+            '${value.getCount()}',
+            style: TextStyle(
+            fontSize: 30,
+            ),
+        );
+    },
+),
+```

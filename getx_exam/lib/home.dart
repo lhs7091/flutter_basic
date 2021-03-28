@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_exam/screens/get_x.dart';
 import 'package:getx_exam/screens/normal.dart';
+import 'package:getx_exam/screens/simple_state_manage.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -29,6 +30,12 @@ class Home extends StatelessWidget {
                 Get.to(GetXFirstPage());
               },
               child: Text('Getx First Page'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.to(SimpleStateManageScreen());
+              },
+              child: Text('simple state management'),
             ),
           ],
         ),
