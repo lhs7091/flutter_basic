@@ -86,3 +86,35 @@ GetBuilder<CountControllerGetX>(
     },
 ),
 ```
+
+## 반응형 상태관리(Reactive State Manager)
+
+Reactive programming can alienate many people because it is said to be complicated. GetX turns reactive programming into something quite simple:
+
+- You won't need to create StreamControllers.
+- You won't need to create a StreamBuilder for each variable
+- You will not need to create a class for each state.
+- You will not need to create a get for an initial value.
+- You will not need to use code generators
+
+```
+// Obx
+Obx(
+  () => Text(
+    "${Get.find<CountControllerGetXReactive>().getCount().value}",
+    style: TextStyle(
+      fontSize: 30,
+    ),
+  ),
+),
+
+// GetX
+GetX(builder: (_) {
+  return Text(
+    "${Get.find<CountControllerGetXReactive>().getCount().value}",
+    style: TextStyle(
+      fontSize: 30,
+    ),
+  );
+}),
+```
