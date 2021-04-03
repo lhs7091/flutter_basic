@@ -35,9 +35,9 @@ See also the codelab for inline ads in Flutter for a detailed guide on setting i
 <img src="https://github.com/lhs7091/flutter_basic/blob/main/google_ads_exam/result/1.png" width="200" />
 
 - Interstitial Ads (full screen image)
-<img src="https://github.com/lhs7091/flutter_basic/blob/main/google_ads_exam/result/1.png" width="200" />
+<img src="https://github.com/lhs7091/flutter_basic/blob/main/google_ads_exam/result/2.png" width="200" />
 
 - Rewarded Ads (video)
-<img src="https://github.com/lhs7091/flutter_basic/blob/main/google_ads_exam/result/1.png" width="200" />
+<img src="https://github.com/lhs7091/flutter_basic/blob/main/google_ads_exam/result/3.png" width="200" />
 
 
