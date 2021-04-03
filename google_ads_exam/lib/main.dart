@@ -66,7 +66,7 @@ class MenuScreen extends StatelessWidget {
               },
               child: Text(
                 'Interstitial & Rewarded Ads',
-                style: TextStyle(fontSize: 30),
+                style: TextStyle(fontSize: 20),
               ),
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(200, 70),

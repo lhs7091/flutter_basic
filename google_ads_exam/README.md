@@ -27,4 +27,17 @@ Note: This plugin also contains support for Google Ad Manager. If you are intere
 
 See also the codelab for inline ads in Flutter for a detailed guide on setting inline banner and native ads.
 
-- [install && Manual](https://pub.dev/packages/google_mobile_ads)
+- [google_mobile_ads: install && Manual](https://pub.dev/packages/google_mobile_ads)
+
+## Example
+
+- Banner Ads in ListView
+<img src="https://github.com/lhs7091/flutter_basic/blob/main/google_ads_exam/result/1.png" width="200" />
+
+- Interstitial Ads (full screen image)
+<img src="https://github.com/lhs7091/flutter_basic/blob/main/google_ads_exam/result/1.png" width="200" />
+
+- Rewarded Ads (video)
+<img src="https://github.com/lhs7091/flutter_basic/blob/main/google_ads_exam/result/1.png" width="200" />
+
+
