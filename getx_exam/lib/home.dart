@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_exam/dependecy/dependency_manage.dart';
 import 'package:getx_exam/screens/get_x.dart';
 import 'package:getx_exam/screens/normal.dart';
 import 'package:getx_exam/screens/reactive_state_manage.dart';
@@ -43,6 +44,12 @@ class Home extends StatelessWidget {
                 Get.to(ReactiveStateManageScreen());
               },
               child: Text('Reactive state management'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.to(DependencyManageScreen());
+              },
+              child: Text('Dependency Injection'),
             ),
           ],
         ),
